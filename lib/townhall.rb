@@ -5,6 +5,7 @@ PAGE_URL = 'https://www.annuaire-des-mairies.com/val-d-oise.html'
 
 hash = Hash.new
 
+#Récupération des noms des villes et des mails
 def get_townhall_email(url)
 	page = Nokogiri::HTML(open(url))
   	mail = page.xpath("//tr[4]/td[2]")[0].text
@@ -12,6 +13,7 @@ def get_townhall_email(url)
   	(mail == "") ? {nom => "Email non fournis"} : {nom => mail}
 end
 
+#Récupération des urls
 def get_townhall_urls
 	result, url_list = [], []
 	page  = Nokogiri::HTML(open(PAGE_URL))
